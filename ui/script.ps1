@@ -1,1 +1,1 @@
-Write-Host "UI Pipeline"
+Write-Host "UI Pipeline - test"
