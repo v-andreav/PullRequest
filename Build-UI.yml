@@ -1,0 +1,37 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+      - '*'
+  paths:
+    include:
+      - 'pipelines/'
+      - 'ui/'
+
+pool:
+  vmImage: windows-2019
+
+stages:
+
+- stage: BuildUI
+  displayName: Build and Test
+
+  jobs:
+
+  - job: Build
+    displayName: Build UI
+
+    steps:
+
+    - task: PowerShell@2
+      displayName: Build UI
+      inputs:
+        filePath: $(Build.SourcesDirectory)\ui\script.ps1
+        failOnStderr: false
+        pwsh: true
